@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProjectTest < ActiveSupport::TestCase
 
-  test 'valid project can be created' do
+  def test_valid_project_can_be_created
     owner = new_user
     owner.save
     project = new_project
@@ -13,7 +13,7 @@ class ProjectTest < ActiveSupport::TestCase
     assert project.user
   end
 
-  test 'project is invalid without owner' do
+  def test_project_is_invalid_without_owner
     project = new_project
     project.user = nil
     project.save

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RewardTest < ActiveSupport::TestCase
 
-  test 'A reward can be created' do
+  def test_a_reward_can_be_created
     project = new_project
     project.save
     reward = Reward.create(
@@ -14,7 +14,7 @@ class RewardTest < ActiveSupport::TestCase
     assert reward.persisted?
   end
 
-  test 'A reward cannot be created without a dollar amount' do
+  def test_a_reward_cannot_be_created_without_a_dollar_amount
     project = new_project
     project.save
     reward = Reward.create(
@@ -25,7 +25,7 @@ class RewardTest < ActiveSupport::TestCase
     assert reward.new_record?, 'Reward should not save without dollar amount'
   end
 
-  test 'A reward cannot be created without a description' do
+  def test_a_reward_cannot_be_created_without_a_description
     project = new_project
     project.save
     reward = Reward.create(

@@ -2,7 +2,7 @@ require_relative '../test_helper'
 
 class PledgeTest < ActiveSupport::TestCase
 
-  test 'A pledge can be created' do
+  def test_a_pledge_can_be_created
     pledge = Pledge.create(
       dollar_amount: 99.00,
       project: new_project,
@@ -13,7 +13,7 @@ class PledgeTest < ActiveSupport::TestCase
     assert pledge.persisted?
   end
 
-  test 'owner cannot back own project' do
+  def test_owner_cannot_back_own_project
     owner = new_user
     owner.save
     project = new_project
