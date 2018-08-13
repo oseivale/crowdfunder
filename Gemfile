@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Core Project
-gem 'rails', '~> 5.1.1'
+gem 'rails', '~> 5.2.0'
 gem 'puma', '~> 3.0'
 
 # Styles
