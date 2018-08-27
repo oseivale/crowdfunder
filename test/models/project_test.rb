@@ -57,4 +57,11 @@ class ProjectTest < ActiveSupport::TestCase
     assert_equal(expect, actual)
   end
 
+  def test_project_goal_is_positive_number
+    project = new_project
+    project.goal = -100
+    expect = false
+    actual = project.valid?
+    assert_equal(expect, actual)
+  end
 end

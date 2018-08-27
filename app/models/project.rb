@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   validates :title, :description, :goal, :start_date, :end_date, :user_id, presence: true
   validate :project_start_not_in_past
   validate :project_end_date_later_than_start_date
+  validates :goal, numericality: {greater_than: 0}
 
   def project_start_not_in_past
     if start_date <= Date.today
@@ -19,4 +20,6 @@ class Project < ActiveRecord::Base
       errors.add(:project, "Error! You cannot create an end date earlier than your start date.")
     end
   end
+
+
 end
