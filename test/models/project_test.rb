@@ -40,4 +40,21 @@ class ProjectTest < ActiveSupport::TestCase
     )
   end
 
+  def test_project_start_cannot_be_in_past
+    # project1 = Project.new(start_date: Date.today)
+    project = new_project
+    project.start_date = Date.today - 1.day
+    expect = false
+    actual = project.valid?
+    assert_equal(expect, actual)
+  end
+
+  def test_project_end_date_cannot_be_earlier_than_start_date
+    project = new_project
+    project.end_date = project.start_date - 1.day
+    expect = false
+    actual = project.valid?
+    assert_equal(expect, actual)
+  end
+
 end
