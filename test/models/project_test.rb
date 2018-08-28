@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ProjectTest < ActiveSupport::TestCase
 
+
   def new_user
     User.destroy_all
     create(:user, email: 'sally@example.com')
@@ -71,7 +72,7 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   def test_project_goal_is_positive_number
-    
+
     project = new_project
     project.goal = -10
     assert project.invalid?
