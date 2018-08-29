@@ -68,4 +68,5 @@ class ProjectTest < ActiveSupport::TestCase
     project.goal = -10
     assert project.invalid?
   end
+
 end

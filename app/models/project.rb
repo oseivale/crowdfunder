@@ -37,4 +37,9 @@ class Project < ActiveRecord::Base
     end
     return false
   end
+
+  def self.with_pledges
+    self.joins(:pledges).uniq
+  end
+
 end
