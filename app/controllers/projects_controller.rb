@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :require_login, only: [:new, :create]
+  before_action :require_ownership, only: [:edit, :update]
+
 
   def index
     @projects = Project.all
