@@ -1,5 +1,12 @@
 <h1><%= @project.title %></h1>
 
+<time class="project-days-left">
+  <h2>
+    <%= icon('clock-o') %>
+    <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %>
+  </h2>
+</time>
+
 <% if @project.has_backed?(current_user) %>
   <p>You have pledged this project already.</p>
 <% end %>
