@@ -9,10 +9,6 @@ class Project < ActiveRecord::Base
   validate :project_end_date_later_than_start_date
   validates :goal, numericality: {greater_than: 0}
 
-  def self.with_pledges
-    self.joins(:pledges).uniq
-  end
-
   def project_start_not_in_past
     if start_date <= Date.today
       errors.add(:project, "Error! Cannot create project in the past.")
@@ -51,5 +47,9 @@ class Project < ActiveRecord::Base
       end
     end
     return total
+  end
+  
+  def self.with_pledges
+    self.joins(:pledges).uniq
   end
 end

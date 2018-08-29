@@ -1,9 +1,7 @@
 <%= link_to "New Project", new_project_path %>
 
-<p>
-  Total project: <%= @projects.count %><br>
-  Total project with pledges: <%= @projects.with_pledges.count %>
-</p>
+<h2>Total Projects: <%= @projects.count %></h2>
+<h2>Pledged Projects: <%= @projects.with_pledges.count %></h2>
 
 <% @projects.each do |project| %>
   <article class="project">
