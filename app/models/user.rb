@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
     end
     return total
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

@@ -1,14 +1,11 @@
-<!-- <h2>
-  <% if current_user %>
-    <%= current_user.first_name %> <%= current_user.last_name %>
+<section class="user-info">
+  <% if current_user == @user %>
+    Hello <%= @user.full_name %><br>
+    You've pledged a total of: <%= number_to_currency(@user.total_pledged) %>
+  <% else %>
+    <h1><%= @user.full_name %>'s Profile</h1>
   <% end %>
-</h2> -->
-
-<p>
-  <!-- works because it's present in users controller -->
-  Hello <%= @user.first_name %> <%= @user.last_name %><br>
-  You've pledged a total of: <%= number_to_currency(@user.total_pledged) %>
-</p>
+</section>
 
 <section class="pledge-wrapper">
   <h2>Pledged Projects</h2>
