@@ -20,4 +20,10 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  def require_ownership
+    if current_user != @project.user
+      redirect_to project_url(@project), notice: 'Access denied. You are not the owner of this project.'
+    end
+  end
 end

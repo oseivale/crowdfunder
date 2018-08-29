@@ -28,7 +28,7 @@
         <strong>Project Title: </strong><%=link_to project.title, project_path(project) %><br>
         <strong>Description: </strong><%= project.description %><br>
         <strong>Goal: </strong><%= number_to_currency(project.goal) %><br>
-        <strong>Current Amount: </strong><%= number_to_currency(project.total_pledged) %>
+        <strong>Raised: </strong><%= number_to_currency(project.total_pledged) %>
       </p>
     </div>
   <% end %>
