@@ -46,4 +46,9 @@ class RewardTest < ActiveSupport::TestCase
     )
   end
 
+  def test_reward_number_cannot_be_negative
+    reward = Reward.new(dollar_amount: -100)
+    refute reward.valid?
+  end
+
 end
