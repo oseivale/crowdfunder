@@ -1,5 +1,6 @@
 class RewardsController < ApplicationController
   before_action :load_project
+  before_action :require_ownership, only: [:create, :destroy]
 
   def new
     @reward = Reward.new
