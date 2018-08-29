@@ -5,7 +5,8 @@ class PledgesController < ApplicationController
     @project = Project.find(params[:project_id])
     # @backers = @project.users
 
-    @pledge = @project.pledges.build
+    @pledge = Pledge.new
+    @pledge.project = @project
     @pledge.dollar_amount = params[:pledge][:dollar_amount]
     @pledge.user = current_user
 
