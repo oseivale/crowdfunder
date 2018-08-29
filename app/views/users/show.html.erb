@@ -1,8 +1,31 @@
-
-
 <h2>
-  Hello <% if current_user %>
-  <%= current_user.first_name %>
-  <%= current_user.last_name %>
-<% end %>
+  Hello
+  <% if current_user %>
+    <%= current_user.first_name %> <%= current_user.last_name %>
+  <% end %>
 </h2>
+
+<section class="pledge-wrapper">
+  <h2>Pledged Projects</h2>
+
+  <% @pledges.each do |pledge| %>
+    <div class="pledge-info">
+      <p>
+        <%= link_to Project.find(pledge.project_id).title, project_path(pledge.project_id) %><br>
+        <%= @user.first_name %> pledged <%= number_to_currency(pledge.dollar_amount) %>.</p>
+    </div>
+  <% end %>
+</section>
+
+<section class="projects-wrapper">
+  <h2>Owned Projects</h2>
+
+  <% @projects.each do |project| %>
+    <div class="project-info">
+      <p>
+        <strong>Project Title: </strong><%=link_to project.title, project_path(project) %><br>
+        <strong>Description: </strong><%= project.description %>
+      </p>
+    </div>
+  <% end %>
+</section>

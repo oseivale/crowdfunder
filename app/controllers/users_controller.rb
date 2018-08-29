@@ -20,5 +20,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @pledges = @user.pledges # => to be used in the view
+    @projects = @user.projects # => to be used in the view
   end
 end
