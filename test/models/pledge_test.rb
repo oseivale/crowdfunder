@@ -29,20 +29,28 @@ class PledgeTest < ActiveSupport::TestCase
     Project.new(
       title:       'Cool new boardgame',
       description: 'Trade sheep',
-      start_date:  Date.today,
+      start_date:  Date.today + 1.day,
       end_date:    Date.today + 1.month,
-      goal:        50000
+      goal:        50000,
+      user_id:     new_user.id
     )
   end
 
   def new_user
-    User.new(
+    User.destroy_all
+    User.create(
       first_name:            'Sally',
       last_name:             'Lowenthal',
       email:                 'sally@example.com',
       password:              'passpass',
       password_confirmation: 'passpass'
     )
+  end
+
+  def test_pledge_number_cannot_be_negative
+    project = new_project
+    pledge = Pledge.new(project: project, user: new_user, dollar_amount: -100)
+    refute pledge.valid?
   end
 
 end
