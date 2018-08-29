@@ -7,8 +7,8 @@
   </h2>
 </time>
 
-<% if @project.has_backed?(current_user) %>
-  <p>You have pledged this project already.</p>
+<% if @project.backer(current_user) %>
+  <p>You have pledged <%= number_to_currency(@project.backer_pledged(current_user)) %> to this project already.</p>
 <% end %>
 
 <% if @project.image.present? %>
