@@ -29,4 +29,12 @@ class Project < ActiveRecord::Base
     end
     return total
   end
+
+  # check if user has backed/pledged this project
+  def has_backed?(user)
+    self.pledges.each do |pledge|
+      return true if pledge.user == user
+    end
+    return false
+  end
 end

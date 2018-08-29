@@ -8,7 +8,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @user = @project.users
+    # @pledge = @project.pledges
+    # @backer = @project.users
   end
 
   def new

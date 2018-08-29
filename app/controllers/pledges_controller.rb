@@ -3,7 +3,7 @@ class PledgesController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    # @user = @project.users
+    # @backers = @project.users
 
     @pledge = @project.pledges.build
     @pledge.dollar_amount = params[:pledge][:dollar_amount]

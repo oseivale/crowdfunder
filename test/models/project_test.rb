@@ -33,7 +33,6 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   def test_valid_project_can_be_created
-
     owner = new_user
     owner.save
     project = new_project
@@ -45,7 +44,6 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   def test_project_is_invalid_without_owner
-
     project = new_project
     project.user = nil
     project.save
@@ -53,26 +51,19 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
 
-
-
-
   def test_project_start_cannot_be_in_past
-    # project1 = Project.new(start_date: Date.today)
-
     project = new_project
     project.start_date = Date.today - 1.day
     assert project.invalid?
   end
 
   def test_project_end_date_cannot_be_earlier_than_start_date
-
     project = new_project
     project.end_date = project.start_date - 1.day
     assert project.invalid?
   end
 
   def test_project_goal_is_positive_number
-
     project = new_project
     project.goal = -10
     assert project.invalid?
