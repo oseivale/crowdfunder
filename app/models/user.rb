@@ -8,4 +8,17 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, on: :create
 
   validates :email, uniqueness: true
+
+  # calculate total $$ pledged, should be tested
+  def total_pledged
+    total = 0
+    self.pledges.each do |pledge|
+      total += pledge.dollar_amount
+    end
+    return total
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

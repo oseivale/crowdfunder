@@ -1,8 +1,35 @@
+<section class="user-info">
+  <% if current_user == @user %>
+    Hello <%= @user.full_name %><br>
+    You've pledged a total of: <%= number_to_currency(@user.total_pledged) %>
+  <% else %>
+    <h1><%= @user.full_name %>'s Profile</h1>
+  <% end %>
+</section>
 
+<section class="pledge-wrapper">
+  <h2>Pledged Projects</h2>
 
-<h2>
-  Hello <% if current_user %>
-  <%= current_user.first_name %>
-  <%= current_user.last_name %>
-<% end %>
-</h2>
+  <% @pledges.each do |pledge| %>
+    <div class="pledge-info">
+      <p>
+        <%= link_to Project.find(pledge.project_id).title, project_path(pledge.project_id) %><br>
+        <%= @user.first_name %> pledged <%= number_to_currency(pledge.dollar_amount) %>.</p>
+    </div>
+  <% end %>
+</section>
+
+<section class="projects-wrapper">
+  <h2>Owned Projects</h2>
+
+  <% @projects.each do |project| %>
+    <div class="project-info">
+      <p>
+        <strong>Project Title: </strong><%=link_to project.title, project_path(project) %><br>
+        <strong>Description: </strong><%= project.description %><br>
+        <strong>Goal: </strong><%= number_to_currency(project.goal) %><br>
+        <strong>Current Amount: </strong><%= number_to_currency(project.total_pledged) %>
+      </p>
+    </div>
+  <% end %>
+</section>

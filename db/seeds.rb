@@ -19,8 +19,8 @@ end
               title: Faker::App.name,
               description: Faker::Lorem.paragraph,
               goal: rand(100000),
-              start_date: Time.now.utc + rand(20).days,
-              end_date: Time.now.utc + 60.days
+              start_date: Time.now.utc + rand(1..3).days,
+              end_date: Time.now.utc + rand(3..30).days
             )
 
   5.times do

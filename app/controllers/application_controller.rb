@@ -13,4 +13,11 @@ class ApplicationController < ActionController::Base
   def not_authenticated
     redirect_to login_path, alert: "Please login first"
   end
+
+  def require_login # => checks if user is logged in
+    if !current_user
+      flash[:notice] = "You must be logged in!"
+      redirect_to login_url
+    end
+  end
 end
