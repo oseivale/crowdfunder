@@ -20,7 +20,7 @@
 <p>Project Owner: <%= link_to @project.user.full_name, user_path(@project.user) %></p>
 
 <p>Goal: <%= number_to_currency(@project.goal) %></p>
-<p>Current Amount Pledged: <%= number_to_currency(@project.total_pledged) %></p>
+<p>Raised: <%= number_to_currency(@project.total_pledged) %></p>
 <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
 <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
 
@@ -34,11 +34,15 @@
   <p><%= number_to_currency(reward.dollar_amount) %></p>
   <p><%= reward.description %></p>
 
-  <p>
-    <small>
-      <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
-    </small>
-  </p>
+  <% if current_user == @project.user %>
+    <p>
+      <small>
+        <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
+      </small>
+    </p>
+  <% end %>
 <% end %>
 
-<%= link_to "Add new reward", new_project_reward_path(@project) %>
+<% if current_user == @project.user %>
+  <%= link_to "Add new reward", new_project_reward_path(@project) %>
+<% end %>
