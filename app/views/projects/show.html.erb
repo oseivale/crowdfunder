@@ -31,8 +31,6 @@
 <% end %>
 
 <h2>Comments</h2>
-<%= render "comments/form" %>
-
 <% @project.comments.each do |comment| %>
   <ul>
     <li>Posted by: <%= comment.user.full_name %></li>
@@ -40,6 +38,10 @@
   </ul>
 
 <% end %>
+
+  <% if @project.backer(current_user) %>
+    <%= render "comments/form" %>
+  <% end %>
 
 <h2>Rewards</h2>
 <% @project.rewards.each do |reward| %>
@@ -52,6 +54,7 @@
         <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
       </small>
     </p>
+
   <% end %>
 <% end %>
 

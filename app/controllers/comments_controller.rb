@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :require_login, only: [:create]
 
   def create
     @project = Project.find(params[:project_id])
@@ -6,6 +7,7 @@ class CommentsController < ApplicationController
     @comment.project_id = params[:project_id]
     @comment.user_id = current_user.id
     @comment.message = params[:comment][:message]
+    
 
     if @comment.save
       redirect_to project_url(@project)
