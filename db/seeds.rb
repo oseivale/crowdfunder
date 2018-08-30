@@ -26,7 +26,7 @@ end
   5.times do
     project.rewards.create!(
       description: Faker::Superhero.power,
-      dollar_amount: rand(100),
+      dollar_amount: 1 + rand(100),
     )
   end
 end
@@ -40,9 +40,10 @@ end
     backer = User.all.sample
   end
 
-  Pledge.create!(
+  Pledge.new(
     user: backer,
     project: project,
-    dollar_amount: project.rewards.sample.dollar_amount + rand(10)
-  )
+    dollar_amount: project.rewards.sample.dollar_amount + rand(10),
+    created_at: project.start_date + 1,
+  ).save(validate: false)
 end

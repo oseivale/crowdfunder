@@ -1,4 +1,18 @@
 <%= form_for(@project, html: {multipart: true}) do |f| %>
+
+<% if @project.errors.any? %>
+
+<h2>Warning: <%= pluralize(@project.errors.count, "error") %> </h2>
+
+<ul>
+  <% @project.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+
+<% end %>
+
+
   <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
