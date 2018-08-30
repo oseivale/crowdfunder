@@ -10,13 +10,13 @@ class Project < ActiveRecord::Base
   validates :goal, numericality: {greater_than: 0}
 
   def project_start_not_in_past
-    if start_date <= Date.today
+    if start_date && start_date <= Date.today
       errors.add(:project, "Error! Cannot create project in the past.")
     end
   end
 
   def project_end_date_later_than_start_date
-    if end_date < start_date
+    if end_date && start_date && end_date < start_date
       errors.add(:project, "Error! You cannot create an end date earlier than your start date.")
     end
   end

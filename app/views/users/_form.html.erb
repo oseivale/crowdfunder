@@ -1,3 +1,17 @@
+
+<% if @user.errors.any? %>
+
+<h2>Warning: <%=pluralize(@user.errors.count, "error") %></h2>
+
+  <ul>
+
+<% @user.errors.full_messages.each do |message| %>
+  <li> <%= message %></li>
+  <% end %>
+  </ul>
+
+<% end %>
+
 <%= form_for @user do |f| %>
   <div class="field">
      <%= f.label :first_name %><br />

@@ -41,13 +41,15 @@
         <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
       </small>
     </p>
+    <% elsif current_user == @reward.user %>
+      <p><%=   %></p>
   <% end %>
 <% end %>
 
 <p>
   <h4>Rewards Claimed:</h4>
     <% if current_user == @project.user %>
-    
+
     <% @project.rewards.each do |display| %>
       <p><%= display.description %></p>
     <% end %>

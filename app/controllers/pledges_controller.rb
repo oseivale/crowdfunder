@@ -6,6 +6,7 @@ class PledgesController < ApplicationController
     # @backers = @project.users
 
     @pledge = Pledge.new
+    @pledge.project = @project
     @pledge.dollar_amount = params[:pledge][:dollar_amount]
     @pledge.user = current_user
 
