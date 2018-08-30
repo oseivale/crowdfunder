@@ -30,6 +30,19 @@
   <%= f.submit "Pledge" %>
 <% end %>
 
+<h2>Comments</h2>
+<% @project.comments.each do |comment| %>
+  <ul>
+    <li>Posted by: <%= comment.user.full_name %></li>
+    <li><%= comment.message %></li>
+  </ul>
+
+<% end %>
+
+  <% if @project.backer(current_user) %>
+    <%= render "comments/form" %>
+  <% end %>
+
 <h2>Rewards</h2>
 <% @project.rewards.each do |reward| %>
   <p><%= number_to_currency(reward.dollar_amount) %></p>
@@ -41,6 +54,7 @@
         <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
       </small>
     </p>
+
   <% end %>
 <% end %>
 
