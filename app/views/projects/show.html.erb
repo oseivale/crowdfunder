@@ -24,13 +24,13 @@
 <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
 <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
 
-
 <%= form_for [@project, Pledge.new] do |f| %>
   <%= f.number_field :dollar_amount, value: @project.rewards.minimum(:dollar_amount), step: 0.01 %>
   <%= f.submit "Pledge" %>
 <% end %>
 
 <h2>Rewards</h2>
+<%= link_to "Add new reward", new_project_reward_path(@project) %>
 <% @project.rewards.each do |reward| %>
   <p><%= number_to_currency(reward.dollar_amount) %></p>
   <p><%= reward.description %></p>
@@ -41,9 +41,28 @@
         <%= link_to "Remove reward", project_reward_path(@project, reward), method: 'delete' %>
       </small>
     </p>
+    <% elsif current_user == @reward.user %>
+      <p><%=   %></p>
   <% end %>
 <% end %>
 
-<% if current_user == @project.user %>
-  <%= link_to "Add new reward", new_project_reward_path(@project) %>
-<% end %>
+
+
+<p>
+  <h4>Rewards Claimed:</h4>
+    <% if current_user == @project.user %>
+    
+    <% @project.rewards.each do |display| %>
+      <p><%= display.description %></p>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
+  <h3>Contributors:</h3>
+    <% if current_user == @project.user %>
+      <% @project.users.each do |display| %>
+        <p><%= display.first_name.capitalize %> <%= display.last_name.capitalize %></p>
+      <% end %>
+    <% end %>
+</p>
