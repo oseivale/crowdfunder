@@ -44,5 +44,9 @@
 <% end %>
 
 <% if current_user == @project.user %>
+  <% @project.users.each do |display| %>
+    <%= display.first_name  %>, <%= display.last_name %>
+  <% end %>
+
   <%= link_to "Add new reward", new_project_reward_path(@project) %>
 <% end %>
