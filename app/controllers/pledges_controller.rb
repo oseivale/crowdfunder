@@ -3,7 +3,6 @@ class PledgesController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    # @backers = @project.users
 
     @pledge = Pledge.new
     @pledge.project = @project
@@ -13,6 +12,7 @@ class PledgesController < ApplicationController
     if @pledge.save
       redirect_to project_url(@project), notice: "You have successfully backed #{@project.title}!"
     else
+      @comment = Comment.new
       flash.now[:alert] = @pledge.errors.full_messages.first
       render 'projects/show'
     end

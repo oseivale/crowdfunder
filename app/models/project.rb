@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
   validates :goal, numericality: {greater_than: 0}
 
   def project_start_not_in_past
-    if start_date && start_date <= Date.today
+    if start_date && start_date <= Date.today - 1.day
       errors.add(:project, "Error! Cannot create project in the past.")
     end
   end
