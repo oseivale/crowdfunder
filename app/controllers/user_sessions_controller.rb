@@ -8,8 +8,10 @@ class UserSessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to projects_url, notice: "Logged in!"
     else
+      flash[:notice] = "username and/or password incorrect!"
       render "new"
     end
+
   end
 
   def destroy
