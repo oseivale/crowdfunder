@@ -33,6 +33,14 @@
 <h2>Comments</h2>
 <%= render "comments/form" %>
 
+<% @project.comments.each do |comment| %>
+  <ul>
+    <li>Posted by: <%= comment.user.full_name %></li>
+    <li><%= comment.message %></li>
+  </ul>
+
+<% end %>
+
 <h2>Rewards</h2>
 <% @project.rewards.each do |reward| %>
   <p><%= number_to_currency(reward.dollar_amount) %></p>

@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
 
   def create
-    @comment = Comment.new
     @project = Project.find(params[:project_id])
+    @comment = Comment.new
     @comment.project_id = params[:project_id]
     @comment.user_id = current_user.id
-    @comment.comment = params[:comment][:message]
+    @comment.message = params[:comment][:message]
 
     if @comment.save
       redirect_to project_url(@project)
