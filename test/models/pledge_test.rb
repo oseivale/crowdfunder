@@ -3,10 +3,12 @@ require_relative '../test_helper'
 class PledgeTest < ActiveSupport::TestCase
 
   def test_a_pledge_can_be_created
+    project = new_project
+    project.start_date = Date.today - 1
     pledge = Pledge.create(
       dollar_amount: 99.00,
-      project: new_project,
-      user: new_user
+      project: project,
+      user: new_user,
     )
     pledge.save
     assert pledge.valid?
@@ -50,6 +52,12 @@ class PledgeTest < ActiveSupport::TestCase
   def test_pledge_number_cannot_be_negative
     project = new_project
     pledge = Pledge.new(project: project, user: new_user, dollar_amount: -100)
+    refute pledge.valid?
+  end
+
+  def test_pledge_cannot_be_made_before_start_date
+    project = new_project
+    pledge = Pledge.new(project: project, user: new_user, dollar_amount: 50)
     refute pledge.valid?
   end
 
