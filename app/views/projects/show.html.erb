@@ -30,6 +30,7 @@
 <% end %>
 
 <h2>Rewards</h2>
+<%= link_to "Add new reward", new_project_reward_path(@project) %>
 <% @project.rewards.each do |reward| %>
   <p><%= number_to_currency(reward.dollar_amount) %></p>
   <p><%= reward.description %></p>
@@ -43,10 +44,21 @@
   <% end %>
 <% end %>
 
-<% if current_user == @project.user %>
-  <% @project.users.each do |display| %>
-    <%= display.first_name  %>, <%= display.last_name %>
+<p>
+  <h4>Rewards Claimed:</h4>
+    <% if current_user == @project.user %>
+    
+    <% @project.rewards.each do |display| %>
+      <p><%= display.description %></p>
+    <% end %>
   <% end %>
+</p>
 
-  <%= link_to "Add new reward", new_project_reward_path(@project) %>
-<% end %>
+<p>
+  <h3>Contributors:</h3>
+    <% if current_user == @project.user %>
+      <% @project.users.each do |display| %>
+        <p><%= display.first_name.capitalize %> <%= display.last_name.capitalize %></p>
+      <% end %>
+    <% end %>
+</p>

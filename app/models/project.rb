@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   has_many :rewards
-  has_many :pledges
+  has_many :pledges, through: :rewards
   has_many :users, through: :pledges # backers
   belongs_to :user # project owner
 
@@ -48,7 +48,7 @@ class Project < ActiveRecord::Base
     end
     return total
   end
-  
+
   def self.with_pledges
     self.joins(:pledges).uniq
   end
