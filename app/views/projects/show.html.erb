@@ -30,6 +30,9 @@
   <%= f.submit "Pledge" %>
 <% end %>
 
+<h2>Comments</h2>
+<%= render "comments/form" %>
+
 <h2>Rewards</h2>
 <% @project.rewards.each do |reward| %>
   <p><%= number_to_currency(reward.dollar_amount) %></p>
